@@ -5,10 +5,14 @@ from typing import Annotated
 from fastapi.security import OAuth2PasswordBearer
 from fastapi import HTTPException, status, Depends
 from . import schemas, models, database, crud
+import os
+from dotenv import load_dotenv
 
-SECRET_KEY = "e5170259b052e9fe3ef6f310f706260c3222b962758adbe4bf21581c4fcebc19"
-ALGORITHM = "HS256"
-ACCESS_TOKEN_EXPIRE_MINUTES = 30
+load_dotenv()
+
+SECRET_KEY = os.getenv("SECRET_KEY")
+ALGORITHM = os.getenv("ALGORITHM")
+ACCESS_TOKEN_EXPIRE_MINUTES = int(os.getenv("ACCESS_TOKEN_EXPIRE_MINUTES"))
 oauth2_scheme = OAuth2PasswordBearer(tokenUrl="login")
 
 
