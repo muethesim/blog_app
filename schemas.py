@@ -26,7 +26,8 @@ class BlogCreate(BlogBase):
     pass
 
 class BlogRead(BlogBase):
-    user : UserBase
+    user : int
+    id : int
     class Config:
         from_attributes = True
 
